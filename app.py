@@ -14,72 +14,209 @@ st.set_page_config(
 
 st.markdown("""
     <style>
-    .main {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+    * {
+        font-family: 'Inter', sans-serif;
     }
+
+    .main {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
+        padding: 0;
+    }
+
+    .stContainer {
+        background: transparent !important;
+    }
+
     .stButton>button {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         color: white;
         font-size: 18px;
-        font-weight: bold;
-        padding: 12px 30px;
-        border-radius: 10px;
+        font-weight: 700;
+        padding: 14px 40px;
+        border-radius: 12px;
         border: none;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
         width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
+
     .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
     }
+
+    .stButton>button:active {
+        transform: translateY(-1px);
+    }
+
     .prediction-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 30px;
-        border-radius: 15px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        padding: 50px 30px;
+        border-radius: 20px;
         text-align: center;
         color: white;
         font-size: 28px;
-        font-weight: bold;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        margin: 20px 0;
+        font-weight: 700;
+        box-shadow: 0 20px 50px rgba(16, 185, 129, 0.3);
+        margin: 30px 0;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        animation: slideUp 0.6s ease-out;
     }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     .header-container {
         text-align: center;
-        padding: 20px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin-bottom: 30px;
+        padding: 50px 40px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
+        border-radius: 25px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        margin-bottom: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
     }
+
+    .header-container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
     .feature-box {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        margin: 15px 0;
+        border: 1px solid rgba(16, 185, 129, 0.1);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .feature-box:hover {
+        box-shadow: 0 25px 50px rgba(16, 185, 129, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .feature-section {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+        padding: 25px;
+        border-radius: 16px;
+        margin: 15px 0;
+        border-left: 4px solid #10b981;
+        transition: all 0.3s ease;
+    }
+
+    .feature-section:hover {
+        border-left-color: #059669;
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.12) 100%);
+    }
+
+    h1 {
+        color: #0f172a;
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    h2 {
+        color: #0f172a;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 20px 0 15px 0;
+    }
+
+    h3 {
+        color: #059669;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h4 {
+        color: #10b981;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 20px 0 15px 0;
+    }
+
+    .subtitle {
+        color: #059669;
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .description-text {
+        color: #475569;
+        font-size: 15px;
+        line-height: 1.6;
         margin: 10px 0;
     }
-    h1 {
-        color: #2d3748;
-        font-size: 48px;
-        font-weight: 800;
-        margin-bottom: 10px;
+
+    .metric-card {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #dcfce7;
+        transition: all 0.3s ease;
     }
-    h2 {
-        color: #4a5568;
-        font-size: 24px;
+
+    .metric-card:hover {
+        border-color: #10b981;
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+    }
+
+    .expander-header {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        border-radius: 12px;
+        padding: 15px;
         font-weight: 600;
+        color: #059669;
     }
-    h3 {
-        color: #667eea;
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 15px;
+
+    .footer-text {
+        color: #cbd5e1;
+        text-align: center;
+        padding: 30px 20px;
+        font-size: 14px;
+        font-weight: 500;
     }
-    .subtitle {
-        color: #718096;
-        font-size: 18px;
-        margin-bottom: 10px;
+
+    .stSlider > div > div > div > div {
+        color: #059669;
+    }
+
+    .stSlider [role="slider"] {
+        accent-color: #10b981;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -103,109 +240,130 @@ def load_model():
 st.markdown("""
     <div class="header-container">
         <h1>🏠 House Price Predictor</h1>
-        <p class="subtitle">Powered by XGBoost Machine Learning Algorithm</p>
-        <p style="color: #a0aec0; font-size: 14px;">Enter the property details below to get an instant price prediction</p>
+        <p class="subtitle">Smart Real Estate Valuation System</p>
+        <p class="description-text">Powered by XGBoost Machine Learning | Instant Accurate Predictions</p>
     </div>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col_img1, col_img2, col_img3 = st.columns([0.5, 2, 0.5])
 
-with col2:
-    st.image("https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
-             use_container_width=True,
-             caption="Find Your Dream Home Value")
+with col_img2:
+    st.image("https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1200",
+             use_container_width=True)
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
 
 st.markdown('<div class="feature-box">', unsafe_allow_html=True)
-st.markdown("<h3>📊 Property Features</h3>", unsafe_allow_html=True)
+st.markdown("""
+    <h3 style='text-align: center; margin-bottom: 30px;'>
+        📊 Enter Property Details
+    </h3>
+""", unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.markdown("#### 🏘️ Location & Demographics")
+    st.markdown("""
+        <div class='feature-section'>
+            <h4>🏘️ Location & Demographics</h4>
+        </div>
+    """, unsafe_allow_html=True)
+
     MedInc = st.slider(
-        "Median Income (in $10,000s)",
+        "💰 Median Income",
         min_value=0.5,
         max_value=15.0,
         value=3.5,
         step=0.1,
-        help="Median income of residents in the block group"
+        help="Median income in tens of thousands of dollars"
     )
+    st.caption(f"Selected: ${MedInc * 10000:,.0f}")
 
     HouseAge = st.slider(
-        "House Age (years)",
+        "🕐 House Age",
         min_value=1,
         max_value=52,
         value=25,
         step=1,
-        help="Median age of houses in the block"
+        help="Years since construction"
     )
+    st.caption(f"Selected: {HouseAge} years old")
 
     AveRooms = st.slider(
-        "Average Rooms per Household",
+        "🛏️ Average Rooms",
         min_value=1.0,
         max_value=15.0,
         value=5.5,
         step=0.1,
-        help="Average number of rooms per household"
+        help="Rooms per household"
     )
+    st.caption(f"Selected: {AveRooms:.1f} rooms")
 
     AveBedrms = st.slider(
-        "Average Bedrooms per Household",
+        "🛌 Average Bedrooms",
         min_value=0.5,
         max_value=5.0,
         value=1.0,
         step=0.1,
-        help="Average number of bedrooms per household"
+        help="Bedrooms per household"
     )
+    st.caption(f"Selected: {AveBedrms:.1f} bedrooms")
 
 with col2:
-    st.markdown("#### 🗺️ Geographic Information")
+    st.markdown("""
+        <div class='feature-section'>
+            <h4>🗺️ Geographic Information</h4>
+        </div>
+    """, unsafe_allow_html=True)
+
     Population = st.slider(
-        "Population",
+        "👥 Population",
         min_value=3,
         max_value=35682,
         value=1500,
         step=10,
-        help="Total population in the block group"
+        help="Total residents in block group"
     )
+    st.caption(f"Selected: {Population:,} people")
 
     AveOccup = st.slider(
-        "Average Occupancy",
+        "👨‍👩‍👧‍👦 Average Occupancy",
         min_value=0.5,
         max_value=10.0,
         value=3.0,
         step=0.1,
-        help="Average number of household members"
+        help="Household members per home"
     )
+    st.caption(f"Selected: {AveOccup:.1f} members")
 
     Latitude = st.slider(
-        "Latitude",
+        "📍 Latitude",
         min_value=32.5,
         max_value=42.0,
         value=37.5,
         step=0.01,
-        help="Latitude coordinate of the property"
+        help="North-South coordinate"
     )
+    st.caption(f"Selected: {Latitude:.2f}°N")
 
     Longitude = st.slider(
-        "Longitude",
+        "📍 Longitude",
         min_value=-124.5,
         max_value=-114.0,
         value=-119.5,
         step=0.01,
-        help="Longitude coordinate of the property"
+        help="East-West coordinate"
     )
+    st.caption(f"Selected: {Longitude:.2f}°W")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3 = st.columns([1, 1.5, 1])
 
 with col2:
-    predict_button = st.button("🔮 Predict House Price")
+    predict_button = st.button("🔮 Predict House Price", use_container_width=True)
 
 if predict_button:
     with st.spinner("🤖 Analyzing property data..."):
@@ -219,54 +377,97 @@ if predict_button:
 
         st.markdown(f"""
             <div class="prediction-box">
-                💰 Estimated House Price<br>
-                <span style="font-size: 42px;">${predicted_price:,.2f}</span>
+                <div style='margin-bottom: 15px;'>Estimated Market Value</div>
+                <div style='font-size: 48px; font-weight: 800;'>${predicted_price:,.0f}</div>
+                <div style='margin-top: 10px; font-size: 14px; opacity: 0.9;'>Based on XGBoost ML Model</div>
             </div>
         """, unsafe_allow_html=True)
 
         st.success("✅ Prediction completed successfully!")
 
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<div style='height: 25px;'></div>", unsafe_allow_html=True)
 
-        col1, col2, col3, col4 = st.columns(4)
+        st.markdown("<h3 style='text-align: center; color: #059669;'>📈 Property Summary</h3>", unsafe_allow_html=True)
 
-        with col1:
-            st.metric("Median Income", f"${MedInc * 10000:,.0f}")
-        with col2:
-            st.metric("House Age", f"{HouseAge} years")
-        with col3:
-            st.metric("Avg Rooms", f"{AveRooms:.1f}")
-        with col4:
-            st.metric("Population", f"{Population:,}")
+        metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4, gap="medium")
 
-st.markdown("<br><br>", unsafe_allow_html=True)
+        with metric_col1:
+            st.markdown(f"""
+                <div class='metric-card'>
+                    <div style='color: #059669; font-size: 12px; font-weight: 600; margin-bottom: 8px;'>MEDIAN INCOME</div>
+                    <div style='color: #0f172a; font-size: 20px; font-weight: 700;'>${MedInc * 10000:,.0f}</div>
+                </div>
+            """, unsafe_allow_html=True)
 
-with st.expander("ℹ️ About This Application"):
-    st.markdown("""
-    ### How It Works
-    This application uses **XGBoost Regressor**, a powerful machine learning algorithm, to predict house prices
-    based on various property features from the California Housing dataset.
+        with metric_col2:
+            st.markdown(f"""
+                <div class='metric-card'>
+                    <div style='color: #059669; font-size: 12px; font-weight: 600; margin-bottom: 8px;'>HOUSE AGE</div>
+                    <div style='color: #0f172a; font-size: 20px; font-weight: 700;'>{HouseAge} yrs</div>
+                </div>
+            """, unsafe_allow_html=True)
 
-    ### Features Explained
-    - **Median Income**: The median income of households in the area (in tens of thousands of dollars)
-    - **House Age**: The median age of houses in the block
-    - **Average Rooms**: Average number of rooms per household
-    - **Average Bedrooms**: Average number of bedrooms per household
-    - **Population**: Total population in the block group
-    - **Average Occupancy**: Average number of household members
-    - **Latitude/Longitude**: Geographic coordinates of the property
+        with metric_col3:
+            st.markdown(f"""
+                <div class='metric-card'>
+                    <div style='color: #059669; font-size: 12px; font-weight: 600; margin-bottom: 8px;'>AVG ROOMS</div>
+                    <div style='color: #0f172a; font-size: 20px; font-weight: 700;'>{AveRooms:.1f}</div>
+                </div>
+            """, unsafe_allow_html=True)
 
-    ### Model Performance
-    The model has been trained on the California Housing dataset with high accuracy metrics:
-    - R² Score: ~0.84 on test data
-    - Mean Absolute Error: Low prediction error
+        with metric_col4:
+            st.markdown(f"""
+                <div class='metric-card'>
+                    <div style='color: #059669; font-size: 12px; font-weight: 600; margin-bottom: 8px;'>POPULATION</div>
+                    <div style='color: #0f172a; font-size: 20px; font-weight: 700;'>{Population:,}</div>
+                </div>
+            """, unsafe_allow_html=True)
 
-    *Note: Predictions are estimates and should be used for informational purposes only.*
-    """)
+st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 
-st.markdown("<br>", unsafe_allow_html=True)
+col_exp1, col_exp2, col_exp3 = st.columns([0.5, 3, 0.5])
+
+with col_exp2:
+    with st.expander("ℹ️ How This Application Works", expanded=False):
+        st.markdown("""
+        ### 🤖 Machine Learning Model
+        This application utilizes **XGBoost Regressor**, an enterprise-grade gradient boosting algorithm, to deliver accurate house price predictions. The model analyzes eight key property features and outputs real estate valuations.
+
+        ### 📊 Input Parameters Guide
+
+        **Location & Demographics**
+        - 💰 **Median Income**: Average household income in the area (in $10K units). Range: $5K - $150K
+        - 👥 **Population**: Total residents in the block group. Range: 3 - 35,682 people
+        - 🏘️ **Average Occupancy**: Household density. Range: 0.5 - 10 members per home
+
+        **Property Characteristics**
+        - 🕐 **House Age**: Years since construction. Range: 1 - 52 years
+        - 🛏️ **Average Rooms**: Rooms per household. Range: 1 - 15 rooms
+        - 🛌 **Average Bedrooms**: Bedrooms per household. Range: 0.5 - 5 bedrooms
+
+        **Geographic Location**
+        - 📍 **Latitude**: North-South coordinate (California range)
+        - 📍 **Longitude**: East-West coordinate (California range)
+
+        ### ✅ Model Performance
+        - **Accuracy**: R² Score of ~0.84 on validation data
+        - **Dataset**: California Housing Dataset (20,640 properties)
+        - **Training Period**: Full dataset with 80-20 train-test split
+        - **Algorithm**: XGBoost with optimized hyperparameters
+
+        ### ⚠️ Important Notes
+        - Predictions are estimates for informational purposes only
+        - Results based on historical California housing data
+        - Actual market prices may vary based on additional factors
+        - Use in conjunction with professional appraisals
+        """)
+
+st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
+
 st.markdown("""
-    <div style="text-align: center; color: #a0aec0; padding: 20px;">
-        <p>Built with ❤️ using Streamlit and XGBoost</p>
+    <div class='footer-text'>
+        <p style='font-size: 16px; font-weight: 600; margin-bottom: 10px;'>🏠 House Price Predictor</p>
+        <p>Powered by XGBoost Machine Learning & Streamlit</p>
+        <p style='margin-top: 15px; opacity: 0.7;'>© 2024 | Real Estate Valuation System</p>
     </div>
 """, unsafe_allow_html=True)
